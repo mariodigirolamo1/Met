@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://by0r7gkddnhlb"]
+
+[ext_resource type="Script" path="res://Levels/GreenArena/CharacterBody2D.gd" id="1_6lnqv"]
+[ext_resource type="Texture2D" uid="uid://ban7hnlo70de5" path="res://assets/met_sprite/met.png" id="2_xj3vj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d38cm"]
+size = Vector2(37, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g35uc"]
+radius = 19.0411
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_6lnqv")
+
+[node name="DamageCollisionShape2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_d38cm")
+
+[node name="BottomCollisionShape2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_g35uc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_xj3vj")
