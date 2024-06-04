@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://l4x2u6dglyqb"]
+[gd_scene load_steps=4 format=3 uid="uid://l4x2u6dglyqb"]
 
+[ext_resource type="Script" path="res://Enemies/triangle_bird.gd" id="1_wemwi"]
 [ext_resource type="Texture2D" uid="uid://bqnsnmnskd70x" path="res://assets/enemies/triangle_bird.png" id="1_wgh7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pe6q1"]
 size = Vector2(52, 38)
 
 [node name="TriangleBird" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_wemwi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)

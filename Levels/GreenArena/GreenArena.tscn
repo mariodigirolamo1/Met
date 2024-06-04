@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7wjwt4p1i4vu"]
+[gd_scene load_steps=8 format=3 uid="uid://b7wjwt4p1i4vu"]
 
 [ext_resource type="Texture2D" uid="uid://c76nqbk1fh3aa" path="res://assets/Sunny Land Collection Files/Sunny Land Collection Files/Packs/Sunnyland/environment/Background/back.png" id="1_5hvdc"]
 [ext_resource type="Script" path="res://Levels/GreenArena/Events.gd" id="1_c680f"]
 [ext_resource type="Texture2D" uid="uid://cfac7bepic6k1" path="res://assets/Sunny Land Collection Files/Sunny Land Collection Files/Packs/Sunnyland/environment/tileset.png" id="2_1hko5"]
+[ext_resource type="Script" path="res://Levels/GreenArena/EnemiesSpawner.gd" id="2_41kbn"]
 [ext_resource type="PackedScene" uid="uid://by0r7gkddnhlb" path="res://Players/basic_player.tscn" id="4_bkhi0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hla3s"]
@@ -402,6 +403,9 @@ sources/0 = SubResource("TileSetAtlasSource_hla3s")
 [node name="Events" type="Node" parent="."]
 script = ExtResource("1_c680f")
 
+[node name="EnemiesSpawner" type="Node" parent="."]
+script = ExtResource("2_41kbn")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1150.0
 offset_bottom = 650.0
@@ -428,5 +432,7 @@ limit_top = 0
 limit_right = 1100
 limit_bottom = 800
 position_smoothing_speed = 10.0
+
+[node name="Enemies" type="Node" parent="."]
 
 [connection signal="bullet_fired" from="Player" to="Events" method="_on_player_bullet_fired"]
