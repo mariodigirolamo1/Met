@@ -21,5 +21,6 @@ position = Vector2(0, 17)
 shape = SubResource("CircleShape2D_g35uc")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1, 0)
 texture = ExtResource("2_xj3vj")
