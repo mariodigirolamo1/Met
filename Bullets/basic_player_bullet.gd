@@ -8,3 +8,4 @@ var direction = Vector2(0,0)
 func _process(delta):
 	position += direction * SPEED * delta
 	rotation += 2 * delta
+	

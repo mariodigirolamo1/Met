@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const HORIZONTAL_SPEED = 100
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -11,10 +12,12 @@ var flapHeightDeltaTrigger = 150
 # this baseline can be modified in the future to move the bird
 # around the screen in y
 var baselineHeight = 400
+var playerNode
 
 func _physics_process(delta):
 	applyGravity(delta)
 	handleFlap(delta)
+	followPlayerX(delta)
 	move_and_slide()
 	
 func applyGravity(delta):
@@ -24,3 +27,9 @@ func applyGravity(delta):
 func handleFlap(delta):
 	if(baselineHeight + flapHeightDeltaTrigger <= position.y):
 		velocity.y = JUMP_VELOCITY
+		
+func followPlayerX(delta):
+	velocity.x = playerNode.position.x - position.x * delta * HORIZONTAL_SPEED
+
+func _on_hitbox_area_entered(area):
+	self.queue_free()
