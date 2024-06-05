@@ -32,4 +32,7 @@ func followPlayerX(delta):
 	velocity.x = playerNode.position.x - position.x * delta * HORIZONTAL_SPEED
 
 func _on_hitbox_area_entered(area):
-	self.queue_free()
+	if(area is Bullet):
+		var bullet = area as Bullet
+		if(bullet.bulletType == BulletTypes.TRIANGLE):
+			self.queue_free()

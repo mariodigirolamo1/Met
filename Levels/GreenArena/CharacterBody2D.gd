@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -700.0
 const SHOT_COOLDOWN_IN_SECONDS = 0.5
 
 signal bullet_fired(bulletDirection: Vector2, playerPosition: Vector2, bulletType: String)
+signal bullet_changed(bulletType: String)
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var lastBulletDelay = 100
@@ -13,6 +14,7 @@ var bulletType = BulletTypes.SQUARE
 func _physics_process(delta):
 	if(Input.is_action_just_pressed("CHANGE_BULLET")):
 		changeProjectileType()
+		bullet_changed.emit(bulletType)
 	setVelocity(delta)
 	move_and_slide()
 	checkShots(delta)

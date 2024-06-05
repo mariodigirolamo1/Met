@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7wjwt4p1i4vu"]
+[gd_scene load_steps=9 format=3 uid="uid://b7wjwt4p1i4vu"]
 
-[ext_resource type="Texture2D" uid="uid://c76nqbk1fh3aa" path="res://assets/Sunny Land Collection Files/Sunny Land Collection Files/Packs/Sunnyland/environment/Background/back.png" id="1_5hvdc"]
 [ext_resource type="Script" path="res://Levels/GreenArena/Events.gd" id="1_c680f"]
 [ext_resource type="Texture2D" uid="uid://cfac7bepic6k1" path="res://assets/Sunny Land Collection Files/Sunny Land Collection Files/Packs/Sunnyland/environment/tileset.png" id="2_1hko5"]
 [ext_resource type="Script" path="res://Levels/GreenArena/EnemiesSpawner.gd" id="2_41kbn"]
+[ext_resource type="Texture2D" path="res://assets/background/background_torches.png" id="3_yb2c1"]
 [ext_resource type="PackedScene" uid="uid://by0r7gkddnhlb" path="res://Players/basic_player.tscn" id="4_bkhi0"]
+[ext_resource type="Texture2D" uid="uid://ca1c76s7m38wb" path="res://assets/bullets/square_bullet.png" id="6_ntpui"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hla3s"]
 texture = ExtResource("2_1hko5")
@@ -409,7 +410,8 @@ script = ExtResource("2_41kbn")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1150.0
 offset_bottom = 650.0
-texture = ExtResource("1_5hvdc")
+texture = ExtResource("3_yb2c1")
+stretch_mode = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_1qrjn")
@@ -435,4 +437,21 @@ position_smoothing_speed = 10.0
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="UI" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+offset_left = 1021.0
+offset_top = 76.0
+offset_right = 1085.0
+offset_bottom = 140.0
+texture = ExtResource("6_ntpui")
+
+[node name="BulletType" type="Label" parent="UI"]
+offset_left = 928.0
+offset_top = 95.0
+offset_right = 1019.0
+offset_bottom = 118.0
+text = "Bullet Type:"
+
+[connection signal="bullet_changed" from="Player" to="Events" method="_on_player_bullet_changed"]
 [connection signal="bullet_fired" from="Player" to="Events" method="_on_player_bullet_fired"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Bullet
+
 const SPEED = 1200
 
 var direction = Vector2(0,0)
