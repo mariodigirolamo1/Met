@@ -4,12 +4,15 @@ const SPEED = 400.0
 const JUMP_VELOCITY = -700.0
 const SHOT_COOLDOWN_IN_SECONDS = 0.5
 
-signal bullet_fired(bulletDirection: Vector2, playerPosition: Vector2)
+signal bullet_fired(bulletDirection: Vector2, playerPosition: Vector2, bulletType: String)
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var lastBulletDelay = 100
+var bulletType = BulletTypes.SQUARE
 
 func _physics_process(delta):
+	if(Input.is_action_just_pressed("CHANGE_BULLET")):
+		changeProjectileType()
 	setVelocity(delta)
 	move_and_slide()
 	checkShots(delta)
@@ -43,7 +46,7 @@ func checkShots(delta):
 	if(lastBulletDelay >= SHOT_COOLDOWN_IN_SECONDS):
 		var direction = getBulletDirection()
 		if(direction != Vector2(0,0)):
-			bullet_fired.emit(direction, position)
+			bullet_fired.emit(direction, position, bulletType)
 			lastBulletDelay = 0
 	
 func getBulletDirection() -> Vector2 :
@@ -57,3 +60,12 @@ func getBulletDirection() -> Vector2 :
 	if(Input.is_action_pressed("FIRE_RIGHT")):
 		bulletDirection = Vector2(1,0)
 	return bulletDirection
+
+func changeProjectileType():
+	match(bulletType):
+		BulletTypes.SQUARE:
+			bulletType = BulletTypes.TRIANGLE
+		BulletTypes.TRIANGLE:
+			bulletType = BulletTypes.CIRCLE
+		BulletTypes.CIRCLE:
+			bulletType = BulletTypes.SQUARE
