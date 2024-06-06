@@ -18,6 +18,7 @@ func _physics_process(delta):
 	applyGravity(delta)
 	handleFlap(delta)
 	followPlayerX(delta)
+	updateSprite()
 	move_and_slide()
 	
 func applyGravity(delta):
@@ -31,8 +32,15 @@ func handleFlap(delta):
 func followPlayerX(delta):
 	velocity.x = playerNode.position.x - position.x * delta * HORIZONTAL_SPEED
 
+func updateSprite():
+	if position.x < playerNode.position.x:
+		get_node("Sprite2D").flip_h = false
+	else:
+		get_node("Sprite2D").flip_h = true
+
 func _on_hitbox_area_entered(area):
 	if(area is Bullet):
 		var bullet = area as Bullet
 		if(bullet.bulletType == BulletTypes.TRIANGLE):
 			self.queue_free()
+	area.queue_free()

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://86v6br553m6l"]
+
+[ext_resource type="Texture2D" uid="uid://ycr4go7d750y" path="res://assets/enemies/square_enemy.png" id="1_47pde"]
+[ext_resource type="Script" path="res://Enemies/sqweirdo.gd" id="1_71dlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1leac"]
+size = Vector2(57, 57)
+
+[node name="Sqweirdo" type="CharacterBody2D" groups=["sqweirdos"]]
+script = ExtResource("1_71dlh")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+texture_filter = 2
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_1leac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_47pde")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+texture_filter = 2
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_1leac")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
